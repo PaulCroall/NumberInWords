@@ -1,0 +1,29 @@
+/**
+ * 
+ */
+package by.paul.croall.test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import by.paul.croall.Number;
+
+
+public class GivenExamplesTest {
+
+	/**
+	 * Tests whether zero works
+	 */
+	@Test
+	public void givenExamples()
+	{
+		Number number = new Number();
+		
+		String answer = number.getAsWords( 0 );
+		
+		Assert.assertEquals( "zero", answer );
+	}
+}
+

@@ -1,0 +1,25 @@
+/**
+ * 
+ */
+package by.paul.croall.test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+/**
+ * @author Paul Croall
+ *
+ */
+
+
+public class ZeroTest {
+
+	@Test
+	public void zeroTest()
+	{
+		Assert.assertEquals( "zero", "actual" );
+	}
+	
+}

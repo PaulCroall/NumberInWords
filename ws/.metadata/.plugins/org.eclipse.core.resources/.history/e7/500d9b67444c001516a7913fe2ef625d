@@ -1,0 +1,33 @@
+package by.paul.croall.test;
+
+import static org.junit.Assert.*;
+
+import java.io.IOException;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import by.paul.croall.Number;
+
+/**
+ * @author Paul Croall
+ *
+ */
+
+
+public class LoopTest {
+
+	@Test
+	public void loopTest()
+	{
+		Assert.assertEquals( "zero", "actual" );
+		
+		Number number = new Number();
+		
+		for( int i=1 ; i<1000000000 ; i *= 2 )
+		{
+			System.out.println( number.getAsWords( i ) );
+			//switch
+		}
+	}	
+}

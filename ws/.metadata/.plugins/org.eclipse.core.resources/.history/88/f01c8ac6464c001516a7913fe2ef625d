@@ -1,0 +1,86 @@
+package by.paul.croall;
+
+public class HunTenUnits implements IGetAsWords
+{
+	/**
+	 * Construct a HunTenUnits object
+	 * 
+	 * A HunTenUnits object deals with positive integers < 1000
+	 * 
+	 * @param magnitude classically million or thousand
+	 */
+	public HunTenUnits( String magnitude )
+	{
+		this.magnitude = nullsToBlank( magnitude );
+	}
+
+	/**
+	 * The constructer for when no magnitude is to be included in the results
+	 */
+	public HunTenUnits()
+	{
+		this( null );
+	}
+	
+	private String magnitude;
+		
+	private final String [] units = { null, "one ", "two ", "three ", "four ", "five ", "six ", "seven ", "eight ", "nine ",
+			 "ten ", "eleven ", "twelve ", "thirteen ", "fourteen ", "fifteen ", "sixteen ", "seventeen ", "eighteen ", "nineteen ", "twenty " };
+
+	private final String [] tens = { null, units[10], units[20], "thirty ", "fourty ", "fifty ", "sixty ", "seventy ", "eighty ", "ninety " };
+
+	private final static String HUNDRED = "hundred ";
+	private final static String AND = "and ";
+	
+	/**
+	 * From the IGetAsWords interface.
+	 * 
+	 * Returns the parameter in words, or null if the result is zero.
+	 * 
+	 * @param no in range of 0 to 999
+	 */
+	public String getAsWords( int no )
+	{
+		if ( no == 0 )
+			return( null );
+		
+		String hi, hundred="", and="", mid=null, lo;
+
+		hi = units[ no / 100 ];
+		
+		no %= 100;
+		
+		if ( no >= 20 )
+		{
+			mid = tens[ no / 10 ];
+			
+			no %= 10;
+		}
+		
+		lo = units[ no ];
+		
+		if ( hi != null && ( mid != null || lo != null ) )
+			and = AND;
+
+		if ( hi != null )
+			hundred = HUNDRED;
+
+		hi = nullsToBlank( hi );
+		mid = nullsToBlank( mid );
+		lo = nullsToBlank( lo );
+
+		return( hi + hundred + and + mid + lo + magnitude );
+	}
+	
+	/**
+	 * Takes a String & if the String is null, returns an empty String,
+	 * otherwise returns the String itself.
+	 * 
+	 * @param string
+	 * @return string
+	 */
+	public String nullsToBlank( String string )
+	{
+		return( string == null ? "" : string );
+	}
+}

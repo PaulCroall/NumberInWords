@@ -1,0 +1,9 @@
+package by.paul.croall;
+
+public class OutOfRangeException extends RuntimeException
+{
+	public OutOfRangeException( int min, int actual, int max )
+	{
+		super( "Out of range, required that " + min  + " <= " + actual + " <= " + max );
+	}
+}

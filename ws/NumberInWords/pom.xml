@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>NumberInWords</groupId>
+  <artifactId>NumberInWords</artifactId>
+  <version>0.0.1</version>
+  <description>Java library, suitable for use in a server-side application, that can take a Java int in the range 0 to 999,999,999 inclusive and returns the equivalent number, as a String, in British English words.</description>
+</project>

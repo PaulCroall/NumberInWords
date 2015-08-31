@@ -1,0 +1,65 @@
+package by.paul.croall;
+
+public class NumberInWords 
+{
+	
+	public NumberInWords()
+	{}
+
+	private int millions = 1000000;
+	
+	private final String [] word = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+									 "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty" };
+    private final String [] tens = { word[0], word[10], word[20], "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety", "hundred" };
+	
+    private final String [] magnitude = { tens[10], "thousand", "million" };
+    
+    private final String and = " and ";
+    
+	public String numberInWords( int number )
+	{
+		// 999,999,999
+		
+		String ret = "";
+		String triplet;
+		
+		
+		
+		for( int units=millions, i=2 ; units>0 ; units /= 1000, --i )
+		{
+			triplet = tripletInWords( ( number / units ) % 1000 );
+			if ( triplet != null )
+				ret += triplet + " " + magnitude[i];
+		}
+		
+		return( ret );
+	}
+	
+	private String tripletInWords( int triplet )
+	{
+		String ret=null;
+		
+		if ( triplet >= 100 )
+		{
+			ret = word[triplet/100] + " " + magnitude[0];
+			triplet %= 100;
+			if ( triplet > 0 )
+				ret += and;
+		}
+		
+		if ( triplet > 0 )
+			if ( triplet <= 20 )
+			{
+				ret += word[ triplet ];
+			}
+			else
+			{
+				ret += tens[ triplet / 10 ];
+				triplet %= 10;
+				if ( triplet > 0 )
+					ret += " " + word[triplet];
+			}
+		
+		return( ret );
+	}
+}

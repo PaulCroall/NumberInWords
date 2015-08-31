@@ -1,0 +1,46 @@
+
+public class HunTenUnits {
+
+	public HunTenUnits( String magnitude )
+	{
+		this.magnitude = magnitude;
+	}
+	
+	private String magnitude;
+	
+	
+	private final String [] units = { null, "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+			 "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty" };
+
+	private final String [] tens = { null, units[10], units[20], "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety" };
+
+	private final static String HUNDRED = "hundred";
+	private final static String AND = "and";
+	
+	public String getAsWords( int no )
+	{
+		String hi, and="", mid=null, lo;
+
+		hi = units[ no / 100 ];
+		
+		no %= 100;
+		
+		if ( no > 20 )
+		{
+			mid = tens[ no / 10 ];
+			
+			no %= 10;
+		}
+		
+		lo = units[ no ];
+		
+		if ( hi != null && ( mid != null || lo != null ) )
+			and = AND;
+		
+		hi = hi==null ? "" : hi + HUNDRED;
+		mid = mid==null ? "" : mid;
+		lo = lo==null ? "" : lo;
+		
+		return( hi + and + mid + lo );
+	}
+}

@@ -1,0 +1,47 @@
+package by.paul.croall;
+
+import java.lang.NumberFormatException;
+
+
+public class Main {
+
+	public static void main( String [] args )
+	{
+		boolean prompt=args.length < 1;
+		
+		if ( args.length > 0 )
+		{
+			try
+			{
+				int no = Integer.parseInt( args[0] );
+				
+				Number number = new Number();
+				
+				String inWords = number.getAsWords( no );
+				
+				System.out.println( "The number " + no + " in words is;" );
+				System.out.println( inWords );
+			}
+			catch( NumberFormatException e )
+			{
+				System.out.println( "The number needs to be correctly formatted" );
+				
+				prompt = true;
+			}
+			catch( OutOfRangeException  e )
+			{
+				System.out.println( e.getMessage() );
+				
+				prompt = true;
+			}
+		}
+		
+		if ( prompt )
+		{
+			System.out.println( "java Main <number>" );
+			System.out.println( "  Where <number> is an integer in the range of 0 to 999999999 inclusive." );
+			System.out.println( "\nOR simply use the library like so;\n" );
+			System.out.println( "String words = new Number.getAsWords( number );" );
+		}
+	}	
+}

@@ -1,0 +1,75 @@
+package by.paul.croall;
+
+import java.io.IOException;
+
+public class Number {
+	
+	public Number()
+	{	
+		hi = new HunTenUnits( MILLION );
+		mid = new HunTenUnits( THOUSAND );
+		lo = new HunTenUnits();
+	}
+
+	private final static String MILLION = "million ";
+	private final static String THOUSAND = "thousand ";
+
+	private final static String AND = "and ";
+	
+	private HunTenUnits hi, mid, lo;
+	
+	public String getAsWords( int no )
+	{
+		String leftAnd = "", rightAnd = "";
+		
+		verifyRange( 1, no, 999999999 );
+
+		String hiStr = hi.getAsWords( no / 1000000 );
+		String midStr = mid.getAsWords( ( no / 1000 ) % 1000 );
+		String loStr = lo.getAsWords( no % 1000 );
+		
+		if ( ( hiStr != null || midStr != null ) && loStr != null && no % 1000 < 100 )
+			rightAnd = AND;
+		else
+			if ( hiStr != null && ( midStr != null || loStr != null ) )
+				leftAnd = AND;
+			
+		hiStr = nullsToBlank( hiStr );
+		midStr = nullsToBlank( midStr );
+		loStr = nullsToBlank( loStr );
+		
+		return( hiStr + leftAnd + midStr + rightAnd + loStr );
+	}
+	
+	private void verifyRange( int min, int actual, int max )
+	{
+		if ( min > actual || actual > max )
+			throw new RuntimeException( "Out of range, required that " + min  + " <= " + actual + " <= " + max );
+	}
+	
+	private String nullsToBlank( String string )
+	{
+		return( string == null ? "" : string );
+	}
+	
+	private boolean alreadyAnded( String already )
+	{
+		return( already != null && already.indexOf( AND ) > -1 );
+	}
+	
+	public static void main( String [] args )
+	{
+		Number number = new Number();
+		
+		try{
+			for( int i=1 ; i<1000000000 ; i *= 2 )
+			{
+				System.out.println( number.getAsWords( i ) );
+				if ( i % 10 == 0 )
+					System.in.read();
+			}
+		}
+		catch( IOException e )
+		{}
+	}
+}

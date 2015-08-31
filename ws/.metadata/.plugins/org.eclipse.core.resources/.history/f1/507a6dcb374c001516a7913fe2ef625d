@@ -1,0 +1,14 @@
+/**
+ * 
+ */
+package by.paul.croall.test;
+
+import static org.junit.Assert.*;
+
+/**
+ * @author paul
+ *
+ */
+public class ZeroTest {
+
+}

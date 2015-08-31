@@ -1,0 +1,12 @@
+package by.paul.croall;
+
+public class Magnitude {
+	
+	public Magnitude( int no, String magnitude )
+	{
+		new HunTenUnits();
+	}
+
+
+	
+}
